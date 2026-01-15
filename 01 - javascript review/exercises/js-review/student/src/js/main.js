@@ -7,13 +7,14 @@
 // These IDs should already exist in index.html.
 
 // TODO: Select the main todo list container
-
+const list = document.querySelector("#todo-list")
 // TODO: Select the output area for text and messages
+const output = document.querySelector("#output")
 
 // TODO: Select the Run Demo button
-
+const btnRun = document.querySelector("#btn-run")
 // TODO: Select the Clear button
-
+const btnClear = document.querySelector("#btn-clear")
 // --------------------------------------------------
 // STEP 2: Variables and template strings
 // --------------------------------------------------
@@ -21,10 +22,12 @@
 // them using a template string.
 
 // TODO: Create a constant named course
-
+const course = "SDEV2150"
 // TODO: Create a variable named topic
-
+let topic = "JS Review"
 // TODO: Use a template string to display both values
+output.innerHTML = `<p>Course: ${course} | Topic: ${topic}</p>`
+output.innerHTML += `<p>Course:More stuff to add here</p>`
 
 // --------------------------------------------------
 // STEP 3: Functions and return values
@@ -33,20 +36,41 @@
 // another function that formats a label/value pair.
 
 // TODO: Create a function add(a, b)
-
+function add(a, b) {
+  return a + b;
+}
 // TODO: Create an arrow function formatResult(label, value)
-
+const formatResult = (label, value) => {
+  return `${label}: ${value}`;
+}
 // TODO: Call the functions and display the result
-
+output.innerHTML += `<p>${formatResult(
+  "2 + 3",
+  add(2, 3))}
+  </p>`
 // --------------------------------------------------
 // STEP 4: Arrays, objects, and iteration
 // --------------------------------------------------
 // Create an array of task objects and count
 // how many are marked as done.
-
+const tasks = [
+  {title:'Install dependencies', done: true},
+  {title: 'Run dev server', done: true},
+  {title: "Complete the review demo", done: false},
+];
 // TODO: Create an array named tasks
-// Each task should have: title (string), done (boolean)
+let completedCount = 0;
+for (const task of tasks) {
+  if (task.done) completedCount++;
+}
 
+// Two variants of writing 'for' loops
+// - for... in  -> returns "keys" as each element
+// - for... of -> returns "values as each eleement"
+// e.g. if I have a list = [10, 11, 12]
+// for... in  -> 
+// for... of -> 
+// Each task should have: title (string), done (boolean)
 // TODO: Use a loop to count completed tasks
 
 // TODO: Display: "Completed: X of Y"
@@ -62,7 +86,9 @@
 // - Loop over items
 // - Add <li> elements with a class of 'done' or 'todo'
 // - Close the list and return the string
-
+function renderTaskList(items) {
+  
+}
 // TODO: Render the task list inside the list container
 
 // --------------------------------------------------
