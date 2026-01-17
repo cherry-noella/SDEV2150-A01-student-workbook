@@ -90,7 +90,10 @@ function renderTaskList(items) {
   let html = '<ul>';
   for (const item of items) {
     const status = item.done? 'done' : 'todo';
-    html += `<li class ="${status}">${item.title}</li>`;
+    const statusText = item.done? '(done)' : '(todo)';
+    html += `
+      <li class ="${status}">${item.title} ${statusText}</li>
+    `;
   }
   html += '</ul>';
   return html;
@@ -128,7 +131,7 @@ function runDemo() {
   output.innerHTML = '';
   addMessage('Running demo...');
   addMessage(formatResult('5 + 8', add(5, 8)));
-  list.innerHTML = renderTaskList(taks);
+  list.innerHTML = renderTaskList(tasks);
 }
 // TODO: Create a function clearUI()
 // - Clear both output and todo list containers
@@ -162,12 +165,34 @@ btnAdd.addEventListener('click', () => {
 //    - Find a task by title
 //    - Flip its done value (true/false)
 
+function toggleDone(title) {
+  let taskFound = false;
+
+  for (const task of tasks) {
+    if (task.title === title && !taskFound) {
+      task.done = !task.done;
+      taskFound = true;
+    }  
+  } 
+}
 // 2. Update renderTaskList() to show '(done)' or '(todo)'
+
 
 // 3. Add event delegation to the <ul>
 //    - When a list item is clicked:
 //      * Toggle the task
 //      * Re-render the list
+
+list.addEventListener('click', (event) => {
+  if (event.target.tagName !== 'LI')
+    return;
+  console.log('list has been clicked');
+
+  const title = event.target.textContent.replace('(done)', '').replace('(todo)', '').trim()
+  toggleDone(title);
+  list.innerHTML = renderTaskList(tasks)
+});
+
 
 // 4. Stretch goals:
 //    - Display a chekcbox next to each task to represent done/todo 
