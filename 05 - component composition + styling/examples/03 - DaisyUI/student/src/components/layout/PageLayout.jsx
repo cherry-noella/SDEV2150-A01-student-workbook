@@ -1,7 +1,8 @@
 export default function PageLayout({ header, children }) { //({ header, left, middle, right }) {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <header className="border-b border-sky-600 bg-white px-6 py-4">
+    
+    <div data-theme="valentine" className="min-h-screen bg-base-200">
+      <header className="border-b border-base-300 bg-base-100 px-6 py-4">
         {header}
       </header>
 
